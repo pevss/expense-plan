@@ -1,6 +1,9 @@
 .button {
 	height: 100%;
 
+	display: grid;
+	place-items: center;
+
 	padding: 5px 15px;
 	border: none;
 	border-radius: 5px;
@@ -20,6 +23,7 @@
 	color: var(--color-600);
 	cursor: default;
 	opacity: 0.2;
+	box-shadow: none;
 }
 
 .primary {
@@ -32,7 +36,17 @@
 	box-shadow: 0 0 50px var(--color-800);
 }
 
+.primary:focus {
+	outline: var(--color-500) 1px solid;
+	outline-offset: 1px;
+}
+
 .secondary {
 	background-color: var(--color-900);
 	color: var(--color-600);
+}
+
+.secondary:focus {
+	outline: var(--color-900) 1px solid;
+	outline-offset: 1px;
 }

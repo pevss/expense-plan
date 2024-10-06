@@ -1,0 +1,12 @@
+.movement {
+	width: 100%;
+
+	display: grid;
+	grid-template-columns: 0.95fr 1.2fr 6fr 0.5fr;
+	gap: 5px;
+	align-items: center;
+}
+
+.amount {
+	font-weight: 800 !important;
+}

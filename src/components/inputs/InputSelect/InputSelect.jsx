@@ -18,7 +18,7 @@ export default function InputSelect({ value, options, placeholder, onChange }) {
 			}}
 		>
 			{finalOptions.map((option) => (
-				<option value={option.value} key={option.id}>
+				<option value={option.id} key={option.id}>
 					{option.description}
 				</option>
 			))}

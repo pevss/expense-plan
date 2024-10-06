@@ -1,0 +1,9 @@
+.movement-list {
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+
+	list-style: none;
+}
