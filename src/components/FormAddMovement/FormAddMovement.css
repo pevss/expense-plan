@@ -1,0 +1,10 @@
+.form-add-movement {
+	width: 100%;
+
+	display: grid;
+	align-items: start;
+	justify-content: center;
+	gap: 10px;
+
+	grid-template-columns: 1fr 6fr 2.5fr 0.5fr;
+}

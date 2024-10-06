@@ -1,5 +1,40 @@
+html {
+	--color-50: #eefff6;
+	--color-100: #d8ffee;
+	--color-200: #b4fedd;
+	--color-300: #7afbc3;
+	--color-400: #39ef9f;
+	--color-500: #10e589;
+	--color-600: #06b369;
+	--color-700: #098c54;
+	--color-800: #0d6e45;
+	--color-900: #0d5a3a;
+	--color-950: #00331f;
+	--color-background: #010705;
+	--color-main-plane: #070f0b;
+	--color-secondary-plane: #121b17;
+	--color-border: #2d3330;
+	--color-outcome: #f45884;
+	--color-outcome-bg: #460b1c;
+
+	font-size: 12px;
+	background-color: var(--color-background);
+}
+
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+
+	color: var(--color-50);
+
+	font-family: Inter, sans-serif;
+}
+
+h1 {
+	font-size: 16px;
+}
+
+p {
+	font-size: 12px;
 }

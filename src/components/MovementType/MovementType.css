@@ -1,0 +1,40 @@
+.movement-type {
+	position: relative;
+
+	width: 100%;
+
+	margin-top: 6px;
+	margin-bottom: 6px;
+
+	display: flex;
+	align-items: start;
+	justify-content: space-between;
+
+	z-index: 1;
+}
+
+.movement-type.selected::before {
+	content: "";
+
+	position: absolute;
+
+	width: calc(100% + 10px);
+	height: calc(100% + 10px);
+
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+
+	border-radius: 10px;
+
+	background-color: var(--color-secondary-plane);
+	border: var(--color-border) 1px solid;
+
+	z-index: -1;
+}
+
+.group {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}

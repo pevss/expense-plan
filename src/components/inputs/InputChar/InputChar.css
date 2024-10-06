@@ -1,0 +1,22 @@
+.input-char {
+	width: 100%;
+	height: 100%;
+
+	padding: 10px;
+
+	background-color: var(--color-secondary-plane);
+	border: var(--color-border) solid 1px;
+	border-radius: 5px;
+
+	color: var(--color-50);
+	font-size: 12px;
+	font-weight: 500;
+}
+
+.input-char::placeholder {
+	color: var(--color-border);
+}
+
+.input-char:focus {
+	outline: var(--color-500) solid 1px;
+}

@@ -1,0 +1,36 @@
+.input-radio {
+	width: 100%;
+	display: flex;
+	gap: 10px;
+}
+
+.input-radio .option {
+	position: relative;
+	width: 100%;
+}
+
+.input-radio .option label {
+	display: block;
+
+	padding: 5px 10px;
+
+	border-radius: 5px;
+
+	font-size: 12px;
+	text-align: center;
+}
+
+.input-radio .option input {
+	position: absolute;
+
+	width: 100%;
+	height: 100%;
+
+	opacity: 0;
+
+	cursor: pointer;
+}
+
+.input-radio .option:not(:has(input:checked)) {
+	opacity: 0.3;
+}

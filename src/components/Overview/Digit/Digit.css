@@ -1,0 +1,65 @@
+.digit {
+	height: 20px;
+	overflow: hidden;
+
+	display: flex;
+	gap: 1px;
+
+	color: inherit;
+	text-align: center;
+}
+
+.digit-options {
+	display: grid;
+	grid-template-rows: repeat(9, 1fr);
+	gap: 5px;
+
+	color: inherit;
+
+	transition: all 0.5s cubic-bezier(0.63, 0.52, 0.19, 1.28);
+}
+
+.digit-options span {
+	color: inherit;
+}
+
+.digit[data-digit="null"] .digit-options,
+.digit[data-digit="0"] .digit-options {
+	translate: 0 calc(-25px * 0);
+}
+
+.digit[data-digit="1"] .digit-options {
+	translate: 0 calc(-25px * 1);
+}
+
+.digit[data-digit="2"] .digit-options {
+	translate: 0 calc(-25px * 2);
+}
+
+.digit[data-digit="3"] .digit-options {
+	translate: 0 calc(-25px * 3);
+}
+
+.digit[data-digit="4"] .digit-options {
+	translate: 0 calc(-25px * 4);
+}
+
+.digit[data-digit="5"] .digit-options {
+	translate: 0 calc(-25px * 5);
+}
+
+.digit[data-digit="6"] .digit-options {
+	translate: 0 calc(-25px * 6);
+}
+
+.digit[data-digit="7"] .digit-options {
+	translate: 0 calc(-25px * 7);
+}
+
+.digit[data-digit="8"] .digit-options {
+	translate: 0 calc(-25px * 8);
+}
+
+.digit[data-digit="9"] .digit-options {
+	translate: 0 calc(-25px * 9);
+}

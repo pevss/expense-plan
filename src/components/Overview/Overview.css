@@ -1,0 +1,10 @@
+.overview {
+	display: flex;
+	font-weight: 800 !important;
+	gap: 8px;
+}
+
+.overview > span {
+	display: flex;
+	color: inherit;
+}
