@@ -2,6 +2,8 @@
 
 Após finalizar a primeira parte do **[Curso de React do Jonas Schmedtmann](https://www.udemy.com/course/the-ultimate-react-course/)**, que aborda os fundamentos do React (o que é React, por que usá-lo, JSX, estado e gerenciamento de estado), o instrutor recomendou que criássemos um projeto por conta própria antes de avançar no curso. Foi assim que decidi desenvolver uma ideia que já tinha há algum tempo: um **gestor de economias**.
 
+[Clique aqui para testar o app! (ABRA NO COMPUTADOR OU NOTEBOOK)](https://pevss.github.io/expense-plan/)
+
 ### Minha ideia inicial incluía:
 
 -   Acompanhar quanto dinheiro tenho;
