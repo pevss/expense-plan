@@ -2,11 +2,15 @@
 	width: 100%;
 
 	display: grid;
-	grid-template-columns: 0.95fr 1.2fr 6fr 0.5fr;
-	gap: 5px;
+	grid-template-columns: 0.95fr 1fr 6fr 0.5fr;
+	gap: 10px;
 	align-items: center;
 }
 
 .amount {
 	font-weight: 800 !important;
+}
+
+.movement *:not(.movement-type-label) {
+	min-width: max-content;
 }
