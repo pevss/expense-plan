@@ -7,6 +7,7 @@ import FormAddMovementType from "./components/FormAddMovementType/FormAddMovemen
 import MovementTypeList from "./components/MovementTypeList/MovementTypeList";
 import FormAddMovement from "./components/FormAddMovement/FormAddMovement";
 import MovementList from "./components/MovementList/MovementList";
+import MonthList from "./components/MonthList/MonthList";
 
 import "./App.css";
 
@@ -66,6 +67,25 @@ export default function App() {
 			: true
 	);
 
+	const movementsDates = movements.reduce((acc, movement) => {
+		const currentDate = new Date();
+		const currentMonth = currentDate.getMonth();
+		const currentYear = currentDate.getFullYear();
+
+		const movementDate = new Date(movement.date);
+		const movementMonth = movementDate.getMonth();
+		const movementYear = movementDate.getFullYear();
+
+		const isDateInAcc = acc.some(
+			(date) => date.year === movementYear && date.month === movementMonth
+		);
+
+		!acc.length && acc.push({ month: currentMonth, year: currentYear });
+		!isDateInAcc && acc.push({ month: movementMonth, year: movementYear });
+
+		return acc;
+	}, []);
+
 	const { balance, earned, spent } = movements.reduce(
 		(acc, movement) => {
 			const movementType = movementTypes.find(
@@ -114,18 +134,86 @@ export default function App() {
 
 	const handleAddNewMovement = function (newMovement) {
 		setMovements((currMovements) => [...currMovements, newMovement]);
+		console.log(movements);
 	};
 
 	const handleDeleteMovement = function (movementId) {
 		if (window.confirm("Are you sure you want to delete this movement?"))
 			setMovements((currMovements) =>
-				currMovements.filter((movement) => movement.id !== movementId)
+				currMovements.map((movement) =>
+					movement.id === movementId
+						? { ...movement, isDeleted: 1 }
+						: movement
+				)
 			);
 	};
 
 	return (
 		<div className="app">
+			<aside>
+				<Section title={"History"} shouldStrech={true}>
+					<Card shouldStrech={true}>
+						<MonthList
+							movementsDates={
+								movementsDates.lenght
+									? movementsDates
+									: [
+											{
+												month: new Date().getMonth(),
+												year: new Date().getFullYear(),
+											},
+											{
+												month: 9,
+												year: 2003,
+											},
+											{
+												month: 6,
+												year: 2003,
+											},
+									  ]
+							}
+						/>
+					</Card>
+				</Section>
+			</aside>
+
 			<aside style={{ height: "100%" }}>
+				<Section title="Movement types" shouldStrech={true}>
+					<Card label="Add new movement type:">
+						<FormAddMovementType
+							onAddMovementType={handleAddMovementType}
+						/>
+					</Card>
+					<Card label="Your movement types:" shouldStrech={true}>
+						<MovementTypeList
+							movementTypes={movementTypes}
+							selectedMovementType={selectedMovementType}
+							onSelectMovementType={handleSelectMovementType}
+							onUpdateMovementType={handleUpdateMovementType}
+						/>
+					</Card>
+				</Section>
+			</aside>
+
+			<aside>
+				<Section title="Monthly movements" shouldStrech={true}>
+					<Card label="Add new movement: ">
+						<FormAddMovement
+							movementTypes={movementTypes}
+							onAddNewMovement={handleAddNewMovement}
+						/>
+					</Card>
+					<Card label="Your movements: " shouldStrech={true}>
+						<MovementList
+							movements={filteredMovements}
+							movementTypes={movementTypes}
+							onDelete={handleDeleteMovement}
+						/>
+					</Card>
+				</Section>
+			</aside>
+
+			<main style={{ height: "100%" }}>
 				<Section title="Overview">
 					<div className="overview-container">
 						<Card label="Current balance:">
@@ -145,24 +233,6 @@ export default function App() {
 					</div>
 				</Section>
 
-				<Section title="Movement types" shouldStrech={true}>
-					<Card label="Add new movement type:">
-						<FormAddMovementType
-							onAddMovementType={handleAddMovementType}
-						/>
-					</Card>
-					<Card label="Your movement types:" shouldStrech={true}>
-						<MovementTypeList
-							movementTypes={movementTypes}
-							selectedMovementType={selectedMovementType}
-							onSelectMovementType={handleSelectMovementType}
-							onUpdateMovementType={handleUpdateMovementType}
-						/>
-					</Card>
-				</Section>
-			</aside>
-
-			<main>
 				<Section title="Movements" shouldStrech={true}>
 					<Card label="Add new movement: ">
 						<FormAddMovement

@@ -6,9 +6,10 @@
 	justify-content: center;
 	gap: 10px;
 
-	grid-template-columns: 2fr 6fr 2.5fr 0.5fr;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
 }
 
-.form-add-movement * {
+/* .form-add-movement * {
 	min-width: max-content;
-}
+} */

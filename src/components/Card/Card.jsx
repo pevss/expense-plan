@@ -6,7 +6,7 @@ export default function Card({ label, shouldStrech, children }) {
 			className="card"
 			style={{ ...(shouldStrech && { height: "100%" }) }}
 		>
-			<p>{label}</p>
+			{label && <p>{label}</p>}
 			{children}
 		</div>
 	);

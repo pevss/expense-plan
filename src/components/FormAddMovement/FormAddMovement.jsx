@@ -24,6 +24,7 @@ export default function FormAddMovement({ movementTypes, onAddNewMovement }) {
 		amount,
 		description,
 		movementTypeId,
+		isDeleted: 0,
 	};
 
 	const handleSubmit = function (e) {
