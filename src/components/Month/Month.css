@@ -25,3 +25,8 @@
 .month:not(.selected):hover {
 	outline: 1px solid var(--color-border);
 }
+
+span,
+h1 {
+	pointer-events: none;
+}

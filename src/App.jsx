@@ -56,16 +56,32 @@ const defaultMovementTypes = [
 	},
 ];
 
+const currentDate = new Date();
+const currentMonth = currentDate.getMonth();
+const currentYear = currentDate.getFullYear();
+
 export default function App() {
 	const [movements, setMovements] = useState([]);
 	const [movementTypes, setMovementTypes] = useState(defaultMovementTypes);
 	const [selectedMovementType, setSelectedMovementType] = useState(null);
+	const [selectedDate, setSelectedDate] = useState({
+		month: currentMonth,
+		year: currentYear,
+	});
 
-	const filteredMovements = movements.filter((movement) =>
-		selectedMovementType
-			? movement.movementTypeId === selectedMovementType?.id
-			: true
-	);
+	const filteredMovements = movements.filter((movement) => {
+		const movementDate = new Date(movement.date);
+		const movementMonth = movementDate.getMonth();
+		const movementYear = movementDate.getFullYear();
+
+		return (
+			(selectedMovementType
+				? movement.movementTypeId === selectedMovementType?.id
+				: true) &&
+			selectedDate.year === movementYear &&
+			selectedDate.month === movementMonth
+		);
+	});
 
 	const movementsDates = movements.reduce((acc, movement) => {
 		const currentDate = new Date();
@@ -141,11 +157,15 @@ export default function App() {
 		if (window.confirm("Are you sure you want to delete this movement?"))
 			setMovements((currMovements) =>
 				currMovements.map((movement) =>
-					movement.id === movementId
-						? { ...movement, isDeleted: 1 }
-						: movement
+					movement.id === movementId ? { ...movement, isDeleted: 1 } : movement
 				)
 			);
+	};
+
+	const handleSelectDate = function (date) {
+		setSelectedDate(date);
+
+		console.log(selectedDate);
 	};
 
 	return (
@@ -154,6 +174,8 @@ export default function App() {
 				<Section title={"History"} shouldStrech={true}>
 					<Card shouldStrech={true}>
 						<MonthList
+							selectedDate={selectedDate}
+							onSelectDate={handleSelectDate}
 							movementsDates={
 								movementsDates.lenght
 									? movementsDates
@@ -180,9 +202,7 @@ export default function App() {
 			<aside style={{ height: "100%" }}>
 				<Section title="Movement types" shouldStrech={true}>
 					<Card label="Add new movement type:">
-						<FormAddMovementType
-							onAddMovementType={handleAddMovementType}
-						/>
+						<FormAddMovementType onAddMovementType={handleAddMovementType} />
 					</Card>
 					<Card label="Your movement types:" shouldStrech={true}>
 						<MovementTypeList
@@ -197,13 +217,13 @@ export default function App() {
 
 			<aside>
 				<Section title="Monthly movements" shouldStrech={true}>
-					<Card label="Add new movement: ">
+					<Card label="Add new movement:">
 						<FormAddMovement
 							movementTypes={movementTypes}
 							onAddNewMovement={handleAddNewMovement}
 						/>
 					</Card>
-					<Card label="Your movements: " shouldStrech={true}>
+					<Card label="Your movements:" shouldStrech={true}>
 						<MovementList
 							movements={filteredMovements}
 							movementTypes={movementTypes}
@@ -217,10 +237,7 @@ export default function App() {
 				<Section title="Overview">
 					<div className="overview-container">
 						<Card label="Current balance:">
-							<Overview
-								value={balance < 0 ? 0 : balance}
-								isNeutral={true}
-							/>
+							<Overview value={balance < 0 ? 0 : balance} isNeutral={true} />
 						</Card>
 						<div className="overview-details">
 							<Card label="Earned:">
@@ -234,13 +251,13 @@ export default function App() {
 				</Section>
 
 				<Section title="Movements" shouldStrech={true}>
-					<Card label="Add new movement: ">
+					<Card label="Add new movement:">
 						<FormAddMovement
 							movementTypes={movementTypes}
 							onAddNewMovement={handleAddNewMovement}
 						/>
 					</Card>
-					<Card label="Your movements: " shouldStrech={true}>
+					<Card label="Your movements:" shouldStrech={true}>
 						<MovementList
 							movements={filteredMovements}
 							movementTypes={movementTypes}
